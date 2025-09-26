@@ -1,0 +1,924 @@
+app:
+  description: ''
+  icon: laughing
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: AIserver_main_goodset
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.5@fd6efd37c2a931911de8ab9ca3ba2da303bef146d45ee87ad896b04b36d09403
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/comfyui:0.0.4@8bb424227ceb2fef8f69c3505ab82b34d38a6291e385b482ab67a34c4cf2e656
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: spance/db_client_node:0.1.45@75fb10aa6bbe7482a547ab6af63c34583a7a925b7e5db85472973be36300290c
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: 1758454024138-source-1758454071372-target
+      source: '1758454024138'
+      sourceHandle: source
+      target: '1758454071372'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: tool
+      id: 1758454071372-source-1758457115770-target
+      source: '1758454071372'
+      sourceHandle: source
+      target: '1758457115770'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: tool
+      id: 1758454336268-source-1758457304900-target
+      source: '1758454336268'
+      sourceHandle: source
+      target: '1758457304900'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: llm
+      id: 1758457370451-source-1758457396241-target
+      source: '1758457370451'
+      sourceHandle: source
+      target: '1758457396241'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1758457396241-source-1758457412103-target
+      source: '1758457396241'
+      sourceHandle: source
+      target: '1758457412103'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: variable-aggregator
+      id: 1758457304900-source-1758457412103-target
+      source: '1758457304900'
+      sourceHandle: source
+      target: '1758457412103'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: http-request
+      id: 1758457412103-source-1758457471520-target
+      source: '1758457412103'
+      sourceHandle: source
+      target: '1758457471520'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: end
+      id: 1758457471520-source-1758457487608-target
+      source: '1758457471520'
+      sourceHandle: source
+      target: '1758457487608'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 1758457115770-source-1758459582577-target
+      source: '1758457115770'
+      sourceHandle: source
+      target: '1758459582577'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: http-request
+      id: 1758459582577-source-1758457370451-target
+      source: '1758459582577'
+      sourceHandle: source
+      target: '1758457370451'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: http-request
+      id: 1758459582577-source-1758457242877-target
+      source: '1758459582577'
+      sourceHandle: source
+      target: '1758457242877'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: llm
+      id: 1758457242877-source-1758454336268-target
+      source: '1758457242877'
+      sourceHandle: source
+      target: '1758454336268'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 53
+      id: '1758454024138'
+      position:
+        x: -65.79862911756527
+        y: 282
+      positionAbsolute:
+        x: -65.79862911756527
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 数据接收
+        type: http-request
+        url: '1'
+        variables: []
+      height: 123
+      id: '1758454071372'
+      position:
+        x: 226.95798212628745
+        y: 282
+      positionAbsolute:
+        x: 226.95798212628745
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 90943297-f5a3-4c59-9025-c0b958d462e5
+          role: system
+          text: '1'
+        selected: false
+        title: 标签化prompt
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1758454336268'
+      position:
+        x: 1209.6069075845958
+        y: 503.72258096234464
+      positionAbsolute:
+        x: 1209.6069075845958
+        y: 503.72258096234464
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas: []
+        params: {}
+        provider_id: b6bb0dd8-8c7e-473e-b3d8-ac1f7045a414
+        provider_name: 信息读取存储
+        provider_type: workflow
+        selected: false
+        title: 信息读取存储
+        tool_configurations: {}
+        tool_description: ''
+        tool_label: 信息读取存储
+        tool_name: test_division
+        tool_parameters: {}
+        type: tool
+      height: 53
+      id: '1758457115770'
+      position:
+        x: 491.2745345527512
+        y: 282
+      positionAbsolute:
+        x: 491.2745345527512
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 商家参数设置
+        type: http-request
+        url: '1'
+        variables: []
+      height: 123
+      id: '1758457242877'
+      position:
+        x: 905.6069075845958
+        y: 503.72258096234464
+      positionAbsolute:
+        x: 905.6069075845958
+        y: 503.72258096234464
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Image prompt, you can check the official documentation of Stable
+              Diffusion or FLUX
+            ja_JP: Image prompt, you can check the official documentation of Stable
+              Diffusion or FLUX
+            pt_BR: Image prompt, you can check the official documentation of Stable
+              Diffusion or FLUX
+            zh_Hans: 图像提示词，您可以查看 Stable Diffusion 或者 FLUX 的官方文档
+          label:
+            en_US: Prompt
+            ja_JP: Prompt
+            pt_BR: Prompt
+            zh_Hans: 提示词
+          llm_description: Image prompt, you should describe the image you want to
+            generate as a list of words as possible as detailed, the prompt must be
+            written in English.
+          max: null
+          min: null
+          name: positive_prompt
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Negative prompt, you can check the official documentation of Stable
+              Diffusion or FLUX
+            ja_JP: Negative prompt, you can check the official documentation of Stable
+              Diffusion or FLUX
+            pt_BR: Negative prompt, you can check the official documentation of Stable
+              Diffusion or FLUX
+            zh_Hans: 负面提示词，您可以查看 Stable Diffusion 或者 FLUX 的官方文档
+          label:
+            en_US: Negative Prompt
+            ja_JP: Negative Prompt
+            pt_BR: Negative Prompt
+            zh_Hans: 负面提示词
+          llm_description: Negative prompt, you should describe the image you don't
+            want to generate as a list of words as possible as detailed, the prompt
+            must be written in English.
+          max: null
+          min: null
+          name: negative_prompt
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The input images
+            ja_JP: The input images
+            pt_BR: The input images
+            zh_Hans: 输入的图片
+          label:
+            en_US: Input Images
+            ja_JP: Input Images
+            pt_BR: Input Images
+            zh_Hans: 输入的图片
+          llm_description: The input images, used to transfer to the comfyui workflow
+            to generate another image.
+          max: null
+          min: null
+          name: images
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: files
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: exported from ComfyUI workflow
+            ja_JP: exported from ComfyUI workflow
+            pt_BR: exported from ComfyUI workflow
+            zh_Hans: 从ComfyUI的工作流中导出
+          label:
+            en_US: Workflow JSON
+            ja_JP: Workflow JSON
+            pt_BR: Workflow JSON
+            zh_Hans: Workflow JSON
+          llm_description: ''
+          max: null
+          min: null
+          name: workflow_json
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: When the workflow has multiple image nodes, enter the ID list of
+              these nodes, and the images will be passed to ComfyUI in the order of
+              the list.
+            ja_JP: When the workflow has multiple image nodes, enter the ID list of
+              these nodes, and the images will be passed to ComfyUI in the order of
+              the list.
+            pt_BR: When the workflow has multiple image nodes, enter the ID list of
+              these nodes, and the images will be passed to ComfyUI in the order of
+              the list.
+            zh_Hans: 当工作流有多个图片节点时，输入这些节点的ID列表，图片将按列表顺序传给ComfyUI
+          label:
+            en_US: Image Node ID List
+            ja_JP: Image Node ID List
+            pt_BR: Image Node ID List
+            zh_Hans: 图片节点ID列表
+          llm_description: ''
+          max: null
+          min: null
+          name: image_ids
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: If you need to generate different images each time, you need to
+              enter the ID of the seed node.
+            ja_JP: If you need to generate different images each time, you need to
+              enter the ID of the seed node.
+            pt_BR: If you need to generate different images each time, you need to
+              enter the ID of the seed node.
+            zh_Hans: 如果需要每次生成时使用不同的种子，需要输入包含种子的节点的ID
+          label:
+            en_US: Seed Node Id
+            ja_JP: Seed Node Id
+            pt_BR: Seed Node Id
+            zh_Hans: 种子节点ID
+          llm_description: ''
+          max: null
+          min: null
+          name: seed_id
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          image_ids: ''
+          images: ''
+          negative_prompt: ''
+          positive_prompt: ''
+          seed_id: ''
+          workflow_json: ''
+        provider_id: langgenius/comfyui/comfyui
+        provider_name: langgenius/comfyui/comfyui
+        provider_type: builtin
+        selected: false
+        title: 商品图样生成
+        tool_configurations:
+          image_ids: null
+          seed_id: null
+          workflow_json: '1'
+        tool_description: 运行ComfyUI工作流。
+        tool_label: 工作流
+        tool_name: workflow
+        tool_parameters:
+          positive_prompt:
+            type: mixed
+            value: '1'
+        type: tool
+      height: 141
+      id: '1758457304900'
+      position:
+        x: 1513.6069075845958
+        y: 503.72258096234464
+      positionAbsolute:
+        x: 1513.6069075845958
+        y: 503.72258096234464
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 提取介绍信息
+        type: http-request
+        url: '1'
+        variables: []
+      height: 123
+      id: '1758457370451'
+      position:
+        x: 905.6069075845958
+        y: 282
+      positionAbsolute:
+        x: 905.6069075845958
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 9dd01d4c-4f1c-4b09-b30d-51e0b221090d
+          role: system
+          text: '1'
+        selected: false
+        title: 优化介绍内容
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1758457396241'
+      position:
+        x: 1209.6069075845958
+        y: 282
+      positionAbsolute:
+        x: 1209.6069075845958
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        output_type: string
+        selected: false
+        title: 商品信息综合
+        type: variable-aggregator
+        variables:
+        - - '1758457370451'
+          - body
+      height: 108
+      id: '1758457412103'
+      position:
+        x: 1513.6069075845958
+        y: 282
+      positionAbsolute:
+        x: 1513.6069075845958
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 页面信息部署
+        type: http-request
+        url: '1'
+        variables: []
+      height: 123
+      id: '1758457471520'
+      position:
+        x: 1817.6069075845958
+        y: 282
+      positionAbsolute:
+        x: 1817.6069075845958
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs: []
+        selected: false
+        title: 商品上传结束
+        type: end
+      height: 53
+      id: '1758457487608'
+      position:
+        x: 2121.606907584596
+        y: 282
+      positionAbsolute:
+        x: 2121.606907584596
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema:
+          properties:
+            affected_rows:
+              type: number
+            columns:
+              items:
+                type: string
+              type: array
+            data:
+              items:
+                type: object
+              type: array
+          type: object
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            ja_JP: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            pt_BR: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            zh_Hans: 要执行的SQL查询（参数使用变量`$arg0~N`表示，或使用字面值）
+          label:
+            en_US: SQL Query
+            ja_JP: SQL Query
+            pt_BR: SQL Query
+            zh_Hans: SQL查询
+          llm_description: ''
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg0
+            ja_JP: arg0
+            pt_BR: arg0
+            zh_Hans: 参数0
+          llm_description: ''
+          max: null
+          min: null
+          name: arg0
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg1
+            ja_JP: arg1
+            pt_BR: arg1
+            zh_Hans: 参数1
+          llm_description: ''
+          max: null
+          min: null
+          name: arg1
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg2
+            ja_JP: arg2
+            pt_BR: arg2
+            zh_Hans: 参数2
+          llm_description: ''
+          max: null
+          min: null
+          name: arg2
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg3
+            ja_JP: arg3
+            pt_BR: arg3
+            zh_Hans: 参数3
+          llm_description: ''
+          max: null
+          min: null
+          name: arg3
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg4
+            ja_JP: arg4
+            pt_BR: arg4
+            zh_Hans: 参数4
+          llm_description: ''
+          max: null
+          min: null
+          name: arg4
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          arg0: ''
+          arg1: ''
+          arg2: ''
+          arg3: ''
+          arg4: ''
+          query: ''
+        provider_id: spance/db_client_node/db_client_node
+        provider_name: spance/db_client_node/db_client_node
+        provider_type: builtin
+        selected: false
+        title: PostgreSQL 客户端(5)
+        tool_configurations: {}
+        tool_description: 读写PostgreSQL客户端，最多5个参数。
+        tool_label: PostgreSQL 客户端(5)
+        tool_name: postgres_node_5
+        tool_parameters:
+          query:
+            type: mixed
+            value: '1'
+        type: tool
+      height: 53
+      id: '1758459582577'
+      position:
+        x: 491.2745345527512
+        y: 374.35429789272126
+      positionAbsolute:
+        x: 491.2745345527512
+        y: 374.35429789272126
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -152.31496938417274
+      y: 47.80210655308068
+      zoom: 0.7760720921956163

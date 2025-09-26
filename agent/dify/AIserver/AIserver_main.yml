@@ -1,0 +1,927 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: AIserver_main
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: spance/db_client_node:0.1.45@75fb10aa6bbe7482a547ab6af63c34583a7a925b7e5db85472973be36300290c
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: 1758443846536-source-1758443878782-target
+      source: '1758443846536'
+      sourceHandle: source
+      target: '1758443878782'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: tool
+      id: 1758443878782-source-1758458718702-target
+      source: '1758443878782'
+      sourceHandle: source
+      target: '1758458718702'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: 1758443846536-source-1758458780535-target
+      source: '1758443846536'
+      sourceHandle: source
+      target: '1758458780535'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: http-request
+      id: 1758458780535-source-1758458981018-target
+      source: '1758458780535'
+      sourceHandle: source
+      target: '1758458981018'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: 1758458718702-source-1758459012763-target
+      source: '1758458718702'
+      sourceHandle: source
+      target: '1758459012763'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: 1758458975436-source-1758459024771-target
+      source: '1758458975436'
+      sourceHandle: source
+      target: '1758459024771'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: 1758459854038-source-1758459860162-target
+      source: '1758459854038'
+      sourceHandle: source
+      target: '1758459860162'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: tool
+      id: 1758458981018-source-1758459901258-target
+      source: '1758458981018'
+      sourceHandle: source
+      target: '1758459901258'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 1758459901258-source-1758458975436-target
+      source: '1758459901258'
+      sourceHandle: source
+      target: '1758458975436'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: tool
+      id: 1758458780535-source-1758459988645-target
+      source: '1758458780535'
+      sourceHandle: source
+      target: '1758459988645'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 1758459988645-source-1758459854038-target
+      source: '1758459988645'
+      sourceHandle: source
+      target: '1758459854038'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1758443846536'
+      position:
+        x: 60.2055446277796
+        y: 383.1716607913488
+      positionAbsolute:
+        x: 60.2055446277796
+        y: 383.1716607913488
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 内容接收
+        type: http-request
+        url: '1'
+        variables: []
+      height: 124
+      id: '1758443878782'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas: []
+        params: {}
+        provider_id: b72af5c1-3a44-441e-abc4-46da9c9dbf1b
+        provider_name: 商品发布设置
+        provider_type: workflow
+        selected: false
+        title: 商品发布设置
+        tool_configurations: {}
+        tool_description: ''
+        tool_label: 商品发布设置
+        tool_name: AIserver_main_goodset
+        tool_parameters: {}
+        type: tool
+      height: 54
+      id: '1758458718702'
+      position:
+        x: 650.6104731858059
+        y: 282
+      positionAbsolute:
+        x: 650.6104731858059
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 直播参数设置
+        type: http-request
+        url: '1'
+        variables: []
+      height: 124
+      id: '1758458780535'
+      position:
+        x: 384
+        y: 451.28675450030437
+      positionAbsolute:
+        x: 384
+        y: 451.28675450030437
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas: []
+        params: {}
+        provider_id: 17b2086b-8ccc-4ba5-8f76-dee309493ccc
+        provider_name: 交互生成流程
+        provider_type: workflow
+        selected: false
+        title: 交互生成流程
+        tool_configurations: {}
+        tool_description: '1'
+        tool_label: 交互生成流程
+        tool_name: AIserver_main_imganaration
+        tool_parameters: {}
+        type: tool
+      height: 54
+      id: '1758458975436'
+      position:
+        x: 1380.650068388899
+        y: 451.28675450030437
+      positionAbsolute:
+        x: 1380.650068388899
+        y: 451.28675450030437
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 开始直播
+        type: http-request
+        url: '1'
+        variables: []
+      height: 124
+      id: '1758458981018'
+      position:
+        x: 712.2281715582071
+        y: 451.28675450030437
+      positionAbsolute:
+        x: 712.2281715582071
+        y: 451.28675450030437
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs: []
+        selected: false
+        title: 商品保存
+        type: end
+      height: 54
+      id: '1758459012763'
+      position:
+        x: 954.6104731858059
+        y: 282
+      positionAbsolute:
+        x: 954.6104731858059
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs: []
+        selected: false
+        title: 直播进行
+        type: end
+      height: 54
+      id: '1758459024771'
+      position:
+        x: 1676.5849895987565
+        y: 451.28675450030437
+      positionAbsolute:
+        x: 1676.5849895987565
+        y: 451.28675450030437
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema:
+          properties:
+            affected_rows:
+              type: number
+            columns:
+              items:
+                type: string
+              type: array
+            data:
+              items:
+                type: object
+              type: array
+          type: object
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            ja_JP: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            pt_BR: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            zh_Hans: 要执行的SQL查询（参数使用变量`$arg0~N`表示，或使用字面值）
+          label:
+            en_US: SQL Query
+            ja_JP: SQL Query
+            pt_BR: SQL Query
+            zh_Hans: SQL查询
+          llm_description: ''
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg0
+            ja_JP: arg0
+            pt_BR: arg0
+            zh_Hans: 参数0
+          llm_description: ''
+          max: null
+          min: null
+          name: arg0
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg1
+            ja_JP: arg1
+            pt_BR: arg1
+            zh_Hans: 参数1
+          llm_description: ''
+          max: null
+          min: null
+          name: arg1
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg2
+            ja_JP: arg2
+            pt_BR: arg2
+            zh_Hans: 参数2
+          llm_description: ''
+          max: null
+          min: null
+          name: arg2
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg3
+            ja_JP: arg3
+            pt_BR: arg3
+            zh_Hans: 参数3
+          llm_description: ''
+          max: null
+          min: null
+          name: arg3
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg4
+            ja_JP: arg4
+            pt_BR: arg4
+            zh_Hans: 参数4
+          llm_description: ''
+          max: null
+          min: null
+          name: arg4
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          arg0: ''
+          arg1: ''
+          arg2: ''
+          arg3: ''
+          arg4: ''
+          query: ''
+        provider_id: spance/db_client_node/db_client_node
+        provider_name: spance/db_client_node/db_client_node
+        provider_type: builtin
+        selected: false
+        title: 基础设置导入
+        tool_configurations: {}
+        tool_description: 读写PostgreSQL客户端，最多5个参数。
+        tool_label: PostgreSQL 客户端(5)
+        tool_name: postgres_node_5
+        tool_parameters:
+          query:
+            type: mixed
+            value: '1'
+        type: tool
+      height: 54
+      id: '1758459854038'
+      position:
+        x: 1080.650068388899
+        y: 634.7742483907435
+      positionAbsolute:
+        x: 1080.650068388899
+        y: 634.7742483907435
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs: []
+        selected: false
+        title: 直播信息保存
+        type: end
+      height: 54
+      id: '1758459860162'
+      position:
+        x: 1380.650068388899
+        y: 634.7742483907435
+      positionAbsolute:
+        x: 1380.650068388899
+        y: 634.7742483907435
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema:
+          properties:
+            affected_rows:
+              type: number
+            columns:
+              items:
+                type: string
+              type: array
+            data:
+              items:
+                type: object
+              type: array
+          type: object
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            ja_JP: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            pt_BR: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            zh_Hans: 要执行的SQL查询（参数使用变量`$arg0~N`表示，或使用字面值）
+          label:
+            en_US: SQL Query
+            ja_JP: SQL Query
+            pt_BR: SQL Query
+            zh_Hans: SQL查询
+          llm_description: ''
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg0
+            ja_JP: arg0
+            pt_BR: arg0
+            zh_Hans: 参数0
+          llm_description: ''
+          max: null
+          min: null
+          name: arg0
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg1
+            ja_JP: arg1
+            pt_BR: arg1
+            zh_Hans: 参数1
+          llm_description: ''
+          max: null
+          min: null
+          name: arg1
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg2
+            ja_JP: arg2
+            pt_BR: arg2
+            zh_Hans: 参数2
+          llm_description: ''
+          max: null
+          min: null
+          name: arg2
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg3
+            ja_JP: arg3
+            pt_BR: arg3
+            zh_Hans: 参数3
+          llm_description: ''
+          max: null
+          min: null
+          name: arg3
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg4
+            ja_JP: arg4
+            pt_BR: arg4
+            zh_Hans: 参数4
+          llm_description: ''
+          max: null
+          min: null
+          name: arg4
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          arg0: ''
+          arg1: ''
+          arg2: ''
+          arg3: ''
+          arg4: ''
+          query: ''
+        provider_id: spance/db_client_node/db_client_node
+        provider_name: spance/db_client_node/db_client_node
+        provider_type: builtin
+        selected: false
+        title: 基础数据导出
+        tool_configurations: {}
+        tool_description: 读写PostgreSQL客户端，最多5个参数。
+        tool_label: PostgreSQL 客户端(5)
+        tool_name: postgres_node_5
+        tool_parameters:
+          query:
+            type: mixed
+            value: '1'
+        type: tool
+      height: 54
+      id: '1758459901258'
+      position:
+        x: 1080.650068388899
+        y: 451.28675450030437
+      positionAbsolute:
+        x: 1080.650068388899
+        y: 451.28675450030437
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 在表示生成图片后，用户所说的话
+            ja_JP: 在表示生成图片后，用户所说的话
+            pt_BR: 在表示生成图片后，用户所说的话
+            zh_Hans: 在表示生成图片后，用户所说的话
+          label:
+            en_US: prompt
+            ja_JP: prompt
+            pt_BR: prompt
+            zh_Hans: prompt
+          llm_description: 在表示生成图片后，用户所说的话
+          max: null
+          min: null
+          name: prompt
+          options: []
+          placeholder:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 用户所传入的图片
+            ja_JP: 用户所传入的图片
+            pt_BR: 用户所传入的图片
+            zh_Hans: 用户所传入的图片
+          label:
+            en_US: img
+            ja_JP: img
+            pt_BR: img
+            zh_Hans: img
+          llm_description: 用户所传入的图片
+          max: null
+          min: null
+          name: img
+          options: []
+          placeholder:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: file
+        params:
+          img: ''
+          prompt: ''
+        provider_id: 6236bc02-bef0-4575-8baf-791528092784
+        provider_name: comfyui调用（图生图）
+        provider_type: workflow
+        selected: false
+        title: comfyui调用（图生图）
+        tool_configurations: {}
+        tool_description: 根据用户的需求进行图片生成的工具
+        tool_label: comfyui调用（图生图）
+        tool_name: comfyui_control
+        tool_parameters: {}
+        type: tool
+      height: 54
+      id: '1758459988645'
+      position:
+        x: 712.2281715582071
+        y: 634.7742483907435
+      positionAbsolute:
+        x: 712.2281715582071
+        y: 634.7742483907435
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 26.289266956575375
+      y: -109.49130612856521
+      zoom: 0.8216832487587094

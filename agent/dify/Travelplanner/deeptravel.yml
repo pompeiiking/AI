@@ -1,0 +1,172 @@
+app:
+  description: ''
+  icon: muscle
+  icon_background: '#FFEAD5'
+  mode: agent-chat
+  name: deeptravel比赛项目
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.5@fd6efd37c2a931911de8ab9ca3ba2da303bef146d45ee87ad896b04b36d09403
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/google:0.0.8@3efcf55ffeef9d0f77715e0afb23534952ae0cb385c051d0637e86d71199d1a6
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: spance/db_client_node:0.1.45@75fb10aa6bbe7482a547ab6af63c34583a7a925b7e5db85472973be36300290c
+kind: app
+model_config:
+  agent_mode:
+    enabled: true
+    max_iteration: 5
+    prompt: null
+    strategy: function_call
+    tools:
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: langgenius/google/google
+      provider_name: langgenius/google/google
+      provider_type: builtin
+      tool_label: 谷歌搜索
+      tool_name: google_search
+      tool_parameters:
+        query: ''
+    - enabled: false
+      isDeleted: false
+      notAuthor: false
+      provider_id: spance/db_client_node/db_client_node
+      provider_name: spance/db_client_node/db_client_node
+      provider_type: builtin
+      tool_label: PostgreSQL 客户端(5)
+      tool_name: postgres_node_5
+      tool_parameters:
+        arg0: ''
+        arg1: ''
+        arg2: ''
+        arg3: ''
+        arg4: ''
+        query: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: 6236bc02-bef0-4575-8baf-791528092784
+      provider_name: comfyui调用（图生图）
+      provider_type: workflow
+      tool_label: comfyui调用（图生图）
+      tool_name: comfyui_control
+      tool_parameters:
+        img: ''
+        prompt: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: c21468fd-15a5-45ea-abbd-6904af4b8078
+      provider_name: 旅行高精度策略
+      provider_type: workflow
+      tool_label: 旅行高精度策略
+      tool_name: travelsearch
+      tool_parameters:
+        text: ''
+  annotation_reply:
+    enabled: false
+  chat_prompt_config: {}
+  completion_prompt_config: {}
+  dataset_configs:
+    datasets:
+      datasets: []
+    reranking_enable: false
+    reranking_mode: reranking_model
+    reranking_model:
+      reranking_model_name: netease-youdao/bce-reranker-base_v1
+      reranking_provider_name: langgenius/siliconflow/siliconflow
+    retrieval_model: multiple
+    top_k: 4
+  dataset_query_variable: ''
+  external_data_tools: []
+  file_upload:
+    allowed_file_extensions:
+    - .JPG
+    - .JPEG
+    - .PNG
+    - .GIF
+    - .WEBP
+    - .SVG
+    - .MP4
+    - .MOV
+    - .MPEG
+    - .MPGA
+    allowed_file_types: []
+    allowed_file_upload_methods:
+    - remote_url
+    - local_file
+    enabled: false
+    image:
+      detail: high
+      enabled: false
+      number_limits: 3
+      transfer_methods:
+      - remote_url
+      - local_file
+    number_limits: 3
+  model:
+    completion_params:
+      stop: []
+    mode: chat
+    name: deepseek-chat
+    provider: langgenius/deepseek/deepseek
+  more_like_this:
+    enabled: false
+  opening_statement: "欢迎使用旅行规划助手！我是你的智能旅行小帮手，致力于为你打造轻松又个性化的旅行体验。无论是查询景点信息、寻找特色推荐，还是规划精细行程，我都能灵活调用工具为你提供支持——从实时搜索到生成示意图，甚至绘制详细路线图。我的语气亲切又专业，像一位热爱探险的朋友，随时为你提供清晰实用的建议。现在，告诉我你的旅行需求吧，让我们一起开启完美旅程！\
+    \  \n\n（例如：想了解“大阪环球影城门票价格”？需要“冰岛极光最佳观赏地”推荐？或是规划“周末上海美食之旅”？直接告诉我你的想法即可~）"
+  pre_prompt: "```xml\n<instruction>\n你是一个旅行规划助手，旨在帮助用户轻松规划他们的旅行。根据用户的不同需求，你需要调用不同的工具来完成任务。以下是具体的步骤和规则：\n\
+    \n1. **信息需求**：当用户需要查找具体的旅行信息（如景点开放时间、交通方式等）时，调用搜索工具，并返回准确的信息。\n   - 输入变量：{{search_query}}（用户的具体查询内容）\n\
+    \   - 输出：直接返回搜索结果，不要包含任何XML标签。\n\n2. **旅游推荐**：当用户需要旅游推荐（如景点、餐厅等）时，调用生成图片工具，生成少量示意图辅助推荐。\n\
+    \   - 输入变量：{{recommendation_topic}}（推荐的主题，如“巴黎的浪漫餐厅”）\n   - 输出：返回推荐内容并附上生成的图片链接或描述，不要包含任何XML标签。\n\
+    \n3. **精细行程规划**：当用户需要精细的旅行行程规划时，调用旅游高精度策略工具，并生成精细的图片（如行程路线图）。\n   - 输入变量：{{trip_details}}（行程的详细信息，如日期、地点、偏好等）\n\
+    \   - 输出：返回详细的行程规划并附上生成的图片链接或描述，不要包含任何XML标签。\n\n<example>\n场景1：用户需要查找“东京塔的开放时间”。\n\
+    - 输入：{{search_query}}=\"东京塔的开放时间\"\n- 输出：“东京塔的开放时间是上午9点到晚上11点。”\n\n场景2：用户需要推荐“巴塞罗那的特色景点”。\n\
+    - 输入：{{recommendation_topic}}=\"巴塞罗那的特色景点\"\n- 输出：“推荐参观圣家堂和米拉之家。以下是示意图：[图片链接]”\n\
+    \n场景3：用户需要规划“3天巴黎行程”。\n- 输入：{{trip_details}}=\"3天巴黎行程，偏好艺术和历史\"\n- 输出：“第一天：卢浮宫；第二天：奥赛博物馆；第三天：凡尔赛宫。以下是行程路线图：[图片链接]”\n\
+    </example>\n</instruction>\n```"
+  prompt_type: simple
+  retriever_resource:
+    enabled: true
+  sensitive_word_avoidance:
+    configs: []
+    enabled: false
+    type: ''
+  speech_to_text:
+    enabled: true
+  suggested_questions: []
+  suggested_questions_after_answer:
+    enabled: false
+  text_to_speech:
+    autoPlay: disabled
+    enabled: true
+    language: ''
+    voice: ''
+  user_input_form:
+  - text-input:
+      default: ''
+      label: search_query
+      max_length: 48
+      required: false
+      variable: search_query
+  - text-input:
+      default: ''
+      label: recommendation_topic
+      max_length: 48
+      required: false
+      variable: recommendation_topic
+  - text-input:
+      default: ''
+      label: trip_details
+      max_length: 48
+      required: false
+      variable: trip_details
+version: 0.2.0

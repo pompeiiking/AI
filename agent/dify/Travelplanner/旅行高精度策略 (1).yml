@@ -1,0 +1,243 @@
+app:
+  description: ''
+  icon: bullettrain_side
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 旅行高精度策略
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: agent
+        targetType: end
+      id: 1743587388550-source-1743587358252-target
+      source: '1743587388550'
+      sourceHandle: source
+      target: '1743587358252'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: agent
+      id: 1743587291204-source-1743587388550-target
+      source: '1743587291204'
+      sourceHandle: source
+      target: '1743587388550'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: text
+          max_length: 48
+          options: []
+          required: true
+          type: paragraph
+          variable: text
+      height: 89
+      id: '1743587291204'
+      position:
+        x: 349
+        y: 282
+      positionAbsolute:
+        x: 349
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1743587388550'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 89
+      id: '1743587358252'
+      position:
+        x: 1076
+        y: 282
+      positionAbsolute:
+        x: 1076
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: "任务背景\n你是一个专业的旅游规划助手，需要为用户设计一个符合多重约束的详细行程计划。用户将提供出发地、目的地、旅行天数、预算及特殊需求（如餐饮偏好、住宿规则等）。你的目标是通过以下工具收集信息并生成合理计划：\n\
+              注意！当调用以下工具时均通过调用网络搜索工具代替\nFlightSearch：查询航班信息（日期格式必须为YYYY-MM-DD）\nDistanceMatrix：计算城市间交通距离、时间和费用\n\
+              RestaurantSearch：筛选符合用户餐饮偏好的餐厅\nAttractionSearch：查找景点信息\nAccommodationSearch：筛选满足用户住宿需求的房源\n\
+              NotebookWrite：记录关键信息供后续规划使用\n核心约束条件\n在规划过程中，必须严格遵守以下规则：\n环境约束：\n若工具返回“无结果”，需尝试替代方案（如更换交通方式或调整日期）。\n\
+              所有信息必须基于沙盒环境中的真实数据，禁止虚构（如航班号、餐厅名称需与工具返回一致）。\n常识约束：\n每日活动必须位于同一城市（跨城市需明确标注“从A到B”）。\n\
+              餐厅和景点在行程中不得重复。\n交通方式需合理（如不可同时选择“自驾”和“航班”）。\n硬性约束：\n总预算不可超支（需分日计算并累加）。\n\
+              严格遵守用户需求（如“禁止吸烟”“需儿童友好型住宿”）。\n分步规划指令\n信息收集阶段：\n步骤1：确定目的地城市（使用CitySearch工具，优先选择交通可达的临近城市）。\n\
+              步骤2：查询交通选项（使用FlightSearch或DistanceMatrix，若航班无结果则切换为自驾/出租车）。\n步骤3：筛选住宿（使用AccommodationSearch，检查“最低入住天数”是否匹配行程）。\n\
+              步骤4：按日分配餐饮和景点（使用RestaurantSearch和AttractionSearch，确保每日餐饮类型符合用户偏好）。\n\
+              规划阶段：\n步骤5：按以下模板结构化输出每日计划：\njson\n{\n  \"day\": 1,\n  \"current_city\"\
+              : \"从{出发地}到{目的地}\",\n  \"transportation\": \"航班号/交通方式（含出发/到达时间）\",\n\
+              \  \"breakfast\": \"餐厅名称（需符合用户餐饮类型）\",\n  \"attraction\": \"景点1；景点2（需位于当日城市）\"\
+              ,\n  \"lunch\": \"餐厅名称（不可与早餐重复）\",\n  \"dinner\": \"餐厅名称（不可与早午餐重复）\"\
+              ,\n  \"accommodation\": \"房源名称（需满足用户规则）\"\n}\n步骤6：计算每日成本（调用CostEnquiry工具验证预算，若超支则优化高开销项）。\n\
+              验证与修正：\n步骤7：检查是否满足所有约束（参考“核心约束条件”逐项核对）。\n步骤8：若发现错误（如日期错误、重复景点），按以下优先级修正：\n\
+              调整交通方式或日期；\n替换更高性价比的住宿/餐厅；\n减少非必要景点。\n错误处理与示例\n场景1：工具返回无效结果（如FlightSearch[纽约,\
+              \ 伦敦, 2022-10-01]无数据）\n修正指令：“检测到无可用航班，请尝试更换日期或改用DistanceMatrix查询自驾方案。”\n\
+              场景2：预算超支\n修正指令：“当前总成本为3,200，超出预算3,200，超出预算200。建议优化第2天的住宿（替换为‘经济型房源’可节省$150）。”\n\
+              场景3：景点重复\n修正指令：“第3天的‘大英博物馆’已在第1天访问，请从AttractionSearch中选择其他景点。”\n参考输出示例\n\
+              json\n{\n  \"query\": \"为3人设计从芝加哥到德州的5天行程，预算$5,000，需包含墨西哥菜和意大利菜。\",\n\
+              \  \"plan\": [\n    {\n      \"day\": 1,\n      \"current_city\": \"\
+              从芝加哥到休斯顿\",\n      \"transportation\": \"航班号F123456，出发时间08:00，到达时间10:30\"\
+              ,\n      \"breakfast\": \"-\",\n      \"attraction\": \"休斯顿太空中心\",\n\
+              \      \"lunch\": \"La Mexicana（墨西哥菜）\",\n      \"dinner\": \"Trattoria\
+              \ Sofia（意大利菜）\",\n      \"accommodation\": \"Family-Friendly Entire\
+              \ House（儿童友好型）\"\n    },\n    {\n      \"day\": 2,\n      \"current_city\"\
+              : \"休斯顿\",\n      \"transportation\": \"-\",\n      \"breakfast\": \"\
+              Morning Tacos（墨西哥菜）\",\n      \"attraction\": \"自然科学博物馆；赫曼公园\",\n  \
+              \    \"lunch\": \"Pasta Palace（意大利菜）\",\n      \"dinner\": \"El Patio（墨西哥菜）\"\
+              ,\n      \"accommodation\": \"Family-Friendly Entire House\"\n    }\n\
+              \  ],\n  \"total_cost\": \"$4,950\",\n  \"constraints_check\": \"所有约束已满足\"\
+              \n}\n最终指令\n“请严格按照分步指令和示例格式生成计划，确保每项选择均基于工具返回数据，并在最终输出前调用CostEnquiry验证预算。若中途遇到错误，优先根据修正场景调整方案。”/"
+          model:
+            type: constant
+            value:
+              completion_params: {}
+              mode: chat
+              model: deepseek-chat
+              model_type: llm
+              provider: langgenius/deepseek/deepseek
+              type: model-selector
+          query:
+            type: constant
+            value: '{{#1743587291204.text#}}'
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: ''
+              parameters:
+                query:
+                  auto: 1
+                  value: null
+              provider_name: langgenius/google/google
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: used for searching
+                  ja_JP: used for searching
+                  pt_BR: used for searching
+                  zh_Hans: 用于搜索网页内容
+                label:
+                  en_US: Query string
+                  ja_JP: Query string
+                  pt_BR: Query string
+                  zh_Hans: 查询语句
+                llm_description: key words for searching
+                max: null
+                min: null
+                name: query
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_label: 谷歌搜索
+              tool_name: google_search
+              type: builtin
+        agent_strategy_label: ReAct
+        agent_strategy_name: ReAct
+        agent_strategy_provider_name: langgenius/agent/agent
+        desc: ''
+        output_schema: null
+        plugin_unique_identifier: langgenius/agent:0.0.12@6b1af1fc9a716f494ff669f64c6dd4d2ae29fb5f60c15919df3f2dac89c700da
+        selected: true
+        title: Agent
+        type: agent
+      height: 197
+      id: '1743587388550'
+      position:
+        x: 683
+        y: 282
+      positionAbsolute:
+        x: 683
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -193.5619110124121
+      y: 50.515640749563545
+      zoom: 0.9045716445111538

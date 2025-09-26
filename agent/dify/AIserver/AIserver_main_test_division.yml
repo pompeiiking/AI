@@ -1,0 +1,905 @@
+app:
+  description: ''
+  icon: thinking_face
+  icon_background: '#D3F8DF'
+  mode: workflow
+  name: AIserver_main_test_division
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.5@fd6efd37c2a931911de8ab9ca3ba2da303bef146d45ee87ad896b04b36d09403
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: spance/db_client_node:0.1.45@75fb10aa6bbe7482a547ab6af63c34583a7a925b7e5db85472973be36300290c
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: 1758442327137-source-1758442796284-target
+      source: '1758442327137'
+      sourceHandle: source
+      target: '1758442796284'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: code
+      id: 1758442796284-source-1758442840111-target
+      source: '1758442796284'
+      sourceHandle: source
+      target: '1758442840111'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: end
+      id: 1758442796284-fail-branch-1758442901477-target
+      source: '1758442796284'
+      sourceHandle: fail-branch
+      target: '1758442901477'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 1758442840111-source-1758442936774-target
+      source: '1758442840111'
+      sourceHandle: source
+      target: '1758442936774'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: loop
+      id: 1758442936774-source-1758442970963-target
+      source: '1758442936774'
+      sourceHandle: source
+      target: '1758442970963'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1758442970963'
+        sourceType: http-request
+        targetType: llm
+      id: 1758443035309-source-1758443063168-target
+      source: '1758443035309'
+      sourceHandle: source
+      target: '1758443063168'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1758442970963'
+        sourceType: llm
+        targetType: http-request
+      id: 1758443063168-source-1758443073191-target
+      source: '1758443063168'
+      sourceHandle: source
+      target: '1758443073191'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1758442970963'
+        sourceType: http-request
+        targetType: parameter-extractor
+      id: 1758443035309-source-1758443089499-target
+      source: '1758443035309'
+      sourceHandle: source
+      target: '1758443089499'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1758442970963'
+        sourceType: parameter-extractor
+        targetType: assigner
+      id: 1758443089499-source-1758443146983-target
+      source: '1758443089499'
+      sourceHandle: source
+      target: '1758443146983'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1758442970963'
+        sourceType: loop-start
+        targetType: http-request
+      id: 1758442970963start-source-1758443035309-target
+      source: 1758442970963start
+      sourceHandle: source
+      target: '1758443035309'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: 1758443517544-source-1758443534387-target
+      source: '1758443517544'
+      sourceHandle: source
+      target: '1758443534387'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: tool
+      id: 1758459405716-source-1758443517544-target
+      source: '1758459405716'
+      sourceHandle: source
+      target: '1758443517544'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: loop
+        targetType: llm
+      id: 1758442970963-source-1758459438982-target
+      source: '1758442970963'
+      sourceHandle: source
+      target: '1758459438982'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: loop
+        targetType: llm
+      id: 1758442970963-source-1758459405716-target
+      source: '1758442970963'
+      sourceHandle: source
+      target: '1758459405716'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: tool
+      id: 1758459438982-source-1758443517544-target
+      source: '1758459438982'
+      sourceHandle: source
+      target: '1758443517544'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 53
+      id: '1758442327137'
+      position:
+        x: 55.45135753791374
+        y: 100.7390540874637
+      positionAbsolute:
+        x: 55.45135753791374
+        y: 100.7390540874637
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        error_strategy: fail-branch
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: false
+          retry_interval: 100
+        selected: true
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 预处理文件内容
+        type: http-request
+        url: '1'
+        variables: []
+      height: 129
+      id: '1758442796284'
+      position:
+        x: 330.33767760162937
+        y: 100.7390540874637
+      positionAbsolute:
+        x: 330.33767760162937
+        y: 100.7390540874637
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(arg1: str, arg2: str) -> dict:\n    return {\n        \"\
+          result\": arg1 + arg2,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 提取预处理结果参数
+        type: code
+        variables:
+        - value_selector:
+          - sys
+          - user_id
+          variable: arg1
+        - value_selector:
+          - sys
+          - user_id
+          variable: arg2
+      height: 53
+      id: '1758442840111'
+      position:
+        x: 634.3376776016294
+        y: 100.7390540874637
+      positionAbsolute:
+        x: 634.3376776016294
+        y: 100.7390540874637
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs: []
+        selected: false
+        title: 预处理失败提示
+        type: end
+      height: 53
+      id: '1758442901477'
+      position:
+        x: 330.33767760162937
+        y: 231
+      positionAbsolute:
+        x: 330.33767760162937
+        y: 231
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items: []
+        selected: false
+        title: 切片循环参数赋值
+        type: assigner
+        version: '2'
+      height: 85
+      id: '1758442936774'
+      position:
+        x: 643.1212758710474
+        y: 208.48226639789505
+      positionAbsolute:
+        x: 643.1212758710474
+        y: 208.48226639789505
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        break_conditions: []
+        desc: ''
+        error_handle_mode: terminated
+        height: 412
+        logical_operator: and
+        loop_count: 10
+        selected: false
+        start_node_id: 1758442970963start
+        title: 循环
+        type: loop
+        width: 675
+      height: 412
+      id: '1758442970963'
+      position:
+        x: 464.4316847203148
+        y: 384.1037024638981
+      positionAbsolute:
+        x: 464.4316847203148
+        y: 384.1037024638981
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 675
+      zIndex: 1
+    - data:
+        desc: ''
+        isInLoop: true
+        selected: false
+        title: ''
+        type: loop-start
+      draggable: false
+      height: 48
+      id: 1758442970963start
+      parentId: '1758442970963'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 488.4316847203148
+        y: 452.1037024638981
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-loop-start
+      width: 44
+      zIndex: 1002
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1758442970963'
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 读取预处理结果文件
+        type: http-request
+        url: '1'
+        variables: []
+      height: 123
+      id: '1758443035309'
+      parentId: '1758442970963'
+      position:
+        x: 85.37658485282827
+        y: 65
+      positionAbsolute:
+        x: 549.8082695731431
+        y: 449.1037024638981
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1758442970963'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 8b115fa2-dd23-4179-8881-44a8e90cf6a1
+          role: system
+          text: '1'
+        selected: false
+        title: 文档切片节点
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1758443063168'
+      parentId: '1758442970963'
+      position:
+        x: 84.46329401430717
+        y: 156.58173046386662
+      positionAbsolute:
+        x: 548.894978734622
+        y: 540.6854329277647
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1758442970963'
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 缓存最终切片结果
+        type: http-request
+        url: '1'
+        variables: []
+      height: 123
+      id: '1758443073191'
+      parentId: '1758442970963'
+      position:
+        x: 86.78229954509925
+        y: 269
+      positionAbsolute:
+        x: 551.2139842654141
+        y: 653.1037024638981
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1758442970963'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        parameters:
+        - description: w
+          name: s
+          required: false
+          type: string
+        query:
+        - '1758443035309'
+        - body
+        reasoning_mode: prompt
+        selected: false
+        title: 提取最新标题信息
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1758443089499'
+      parentId: '1758442970963'
+      position:
+        x: 361.29915272972414
+        y: 65
+      positionAbsolute:
+        x: 825.730837450039
+        y: 449.1037024638981
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        items: []
+        loop_id: '1758442970963'
+        selected: false
+        title: 赋值最新的大小标题
+        type: assigner
+        version: '2'
+      height: 85
+      id: '1758443146983'
+      parentId: '1758442970963'
+      position:
+        x: 359.3084297680988
+        y: 164.12375532559668
+      positionAbsolute:
+        x: 823.7401144884136
+        y: 548.2274577894948
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema:
+          properties:
+            affected_rows:
+              type: number
+            columns:
+              items:
+                type: string
+              type: array
+            data:
+              items:
+                type: object
+              type: array
+          type: object
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            ja_JP: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            pt_BR: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            zh_Hans: 要执行的SQL查询（参数使用变量`$arg0~N`表示，或使用字面值）
+          label:
+            en_US: SQL Query
+            ja_JP: SQL Query
+            pt_BR: SQL Query
+            zh_Hans: SQL查询
+          llm_description: ''
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg0
+            ja_JP: arg0
+            pt_BR: arg0
+            zh_Hans: 参数0
+          llm_description: ''
+          max: null
+          min: null
+          name: arg0
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg1
+            ja_JP: arg1
+            pt_BR: arg1
+            zh_Hans: 参数1
+          llm_description: ''
+          max: null
+          min: null
+          name: arg1
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg2
+            ja_JP: arg2
+            pt_BR: arg2
+            zh_Hans: 参数2
+          llm_description: ''
+          max: null
+          min: null
+          name: arg2
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg3
+            ja_JP: arg3
+            pt_BR: arg3
+            zh_Hans: 参数3
+          llm_description: ''
+          max: null
+          min: null
+          name: arg3
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg4
+            ja_JP: arg4
+            pt_BR: arg4
+            zh_Hans: 参数4
+          llm_description: ''
+          max: null
+          min: null
+          name: arg4
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          arg0: ''
+          arg1: ''
+          arg2: ''
+          arg3: ''
+          arg4: ''
+          query: ''
+        provider_id: spance/db_client_node/db_client_node
+        provider_name: spance/db_client_node/db_client_node
+        provider_type: builtin
+        selected: false
+        title: 存入数据库
+        tool_configurations: {}
+        tool_description: 读写PostgreSQL客户端，最多5个参数。
+        tool_label: PostgreSQL 客户端(5)
+        tool_name: postgres_node_5
+        tool_parameters:
+          query:
+            type: mixed
+            value: '1'
+        type: tool
+      height: 53
+      id: '1758443517544'
+      position:
+        x: 1517.082710504739
+        y: 384.1037024638981
+      positionAbsolute:
+        x: 1517.082710504739
+        y: 384.1037024638981
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs: []
+        selected: false
+        title: 文本信息读取结束
+        type: end
+      height: 53
+      id: '1758443534387'
+      position:
+        x: 1783.7681969989762
+        y: 384.1037024638981
+      positionAbsolute:
+        x: 1783.7681969989762
+        y: 384.1037024638981
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 500724f4-44b4-49e0-8eff-bb0eb02e5bf6
+          role: system
+          text: '1'
+        selected: false
+        title: 根据切片后的内容转为rag
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1758459405716'
+      position:
+        x: 1241.721839448639
+        y: 384.1037024638981
+      positionAbsolute:
+        x: 1241.721839448639
+        y: 384.1037024638981
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 542c7067-2eb8-4790-ad9f-0a9beb0b784b
+          role: system
+          text: '1'
+        selected: false
+        title: 输出商品简要介绍
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1758459438982'
+      position:
+        x: 1241.721839448639
+        y: 515.94947896985
+      positionAbsolute:
+        x: 1241.721839448639
+        y: 515.94947896985
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 83.6603207033254
+      y: -40.6795355109175
+      zoom: 0.825236560013205
